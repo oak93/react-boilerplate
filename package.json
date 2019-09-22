@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack -p",
     "start": "webpack-dev-server -d --open",
-    "test": "jest",
+    "test": "jest --collectCoverage=true",
+    "test:watch": "jest --watch",
     "lint": "eslint ./"
   },
   "author": "",

@@ -1,14 +1,14 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const isDev = process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV === "development";
 
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    path: path.join(__dirname, '/dist'),
-    filename: 'bundle.js',
+    path: path.join(__dirname, "/dist"),
+    filename: "bundle.js"
   },
   module: {
     rules: [
@@ -16,66 +16,67 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-        },
+          loader: "babel-loader"
+        }
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: 'file-loader',
-          },
-        ],
+            loader: "file-loader"
+          }
+        ]
       },
       {
-        test: /\.module\.s(a|c)ss$/,
+        test: /\.(sa|sc|c)ss$/,
         loader: [
-          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+          isDev ? "style-loader" : MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               modules: true,
-              sourceMap: isDev,
-            },
+              sourceMap: isDev
+            }
           },
           {
-            loader: 'sass-loader',
+            loader: "sass-loader",
             options: {
-              sourceMap: isDev,
-            },
-          },
-        ],
-      },
-    ],
+              sourceMap: isDev
+            }
+          }
+        ]
+      }
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, '/src/index.html'),
-      filename: 'index.html',
-      inject: 'body',
+      template: path.join(__dirname, "/src/index.html"),
+      filename: "index.html",
+      inject: "body",
       minify: {
         collapseWhitespace: true,
         collapseInlineTagWhitespace: true,
         removeComments: true,
-        removeRedundantAttributes: true,
-      },
+        removeRedundantAttributes: true
+      }
     }),
     new MiniCssExtractPlugin({
-      filename: isDev ? '[name].css' : '[name].[hash].css',
-      chunkFilename: isDev ? '[id].css' : '[id].[hash].css',
-    }),
+      filename: isDev ? "[name].css" : "[name].[hash].css",
+      chunkFilename: isDev ? "[id].css" : "[id].[hash].css"
+    })
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src/'),
+      "@": path.resolve(__dirname, "./src/"),
+      "@tests": path.resolve(__dirname, "./tests/")
     },
-    extensions: ['.js', '.jsx', '.scss'],
+    extensions: [".js", ".jsx", ".scss"]
   },
   performance: {
-    hints: false,
+    hints: false
   },
   devServer: {
-    historyApiFallback: true,
+    historyApiFallback: true
   },
-  devtool: isDev ? 'inline-source-map' : false,
+  devtool: isDev ? "inline-source-map" : false
 };

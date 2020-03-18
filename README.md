@@ -1,4 +1,4 @@
-# web-ui-react-boilerplate
+react-boilerplate
 
 A boilerplate to create react application without cra.
 
@@ -7,7 +7,7 @@ A boilerplate to create react application without cra.
 Install the all dependencies.
 
 ```sh
-$ cd web-ui-react-boilerplate
+$ cd react-boilerplate
 $ npm install
 ```
 
